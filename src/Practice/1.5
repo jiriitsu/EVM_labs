@@ -1,0 +1,36 @@
+
+int changeColor = 1;
+
+void setup() {
+  pinMode(D0,  OUTPUT);
+  pinMode(D1,  OUTPUT);
+  pinMode(D2,  OUTPUT);
+  const int timer_interval_us = 10000;  
+  add_repeating_timer_us(-1, timer_interval_us, &trafficLight, NULL);
+}
+
+void loop()
+{
+
+}
+void trafficLight() {
+  if (changeColor == 1)
+  {
+    digitalWrite(D0, HIGH);
+    digitalWrite(D1, LOW);
+    digitalWrite(D2, LOW);
+  }
+  else if (changeColor == 2)
+  {
+    digitalWrite(D0, LOW);
+    digitalWrite(D1, HIGH);
+    digitalWrite(D2, LOW);
+  }
+  else if (changeColor == 3)
+  {
+    digitalWrite(D0, LOW);
+    digitalWrite(D1, LOW);
+    digitalWrite(D2, HIGH);
+  }
+  changeColor = (changeColor % 3) + 1;
+}
