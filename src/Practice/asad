@@ -1,6 +1,6 @@
 
-volatile int isButtonPressed = 0;
-volatile int changeColor = 1;
+int isButtonPressed = 0;
+int changeColor = 1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -19,28 +19,22 @@ void trafficLight() {
   if(changeColor == 1)
   {
     digitalWrite(D0, HIGH);
+    digitalWrite(D1, LOW);
+    digitalWrite(D2, LOW);
     isButtonPressed = 1;
   }
-  else{digitalWrite(D0, LOW);}
-
-  if(changeColor == 2)
+  else if(changeColor == 2)
   {
+    digitalWrite(D0, LOW);
     digitalWrite(D1, HIGH);
+    digitalWrite(D2, LOW);
     isButtonPressed = 1;
   }
-  else{digitalWrite(D1, LOW);}
-
-  if(changeColor == 3)
+  else if(changeColor == 3)
   {
+    digitalWrite(D0, LOW);
+    digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
     isButtonPressed = 1;
-    changeColor = 0;
-  }
-  else{digitalWrite(D2, LOW);}
-
-  if((digitalRead(D0) == LOW) && isButtonPressed == 1)
-  {
-    changeColor += 1;
-    isButtonPressed = 0;
   }
 }
