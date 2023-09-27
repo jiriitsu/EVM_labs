@@ -1,5 +1,4 @@
 
-int isButtonPressed = 0;
 int changeColor = 1;
 
 void setup() {
@@ -21,20 +20,18 @@ void trafficLight() {
     digitalWrite(D0, HIGH);
     digitalWrite(D1, LOW);
     digitalWrite(D2, LOW);
-    isButtonPressed = 1;
   }
   else if(changeColor == 2)
   {
     digitalWrite(D0, LOW);
     digitalWrite(D1, HIGH);
     digitalWrite(D2, LOW);
-    isButtonPressed = 1;
   }
   else if(changeColor == 3)
   {
     digitalWrite(D0, LOW);
     digitalWrite(D1, LOW);
     digitalWrite(D2, HIGH);
-    isButtonPressed = 1;
   }
+  changeColor = (changeColor % 3) + 1;
 }
