@@ -1,10 +1,10 @@
-const int POTENTIOMETER_PIN = 26;
+//пин потенциометра
 
 void setup() {
   pinMode(D0, OUTPUT);
   
   adc_init();
-  adc_gpio_init(POTENTIOMETER_PIN);
+  //adc_gpio_init(POTENTIOMETER_PIN);
   adc_select_input(D0);
   
   pwm_gpio_init(D0);
