@@ -1,37 +1,54 @@
-
-int changeColor = 1;
-
-void setup() {
-  // put your setup code here, to run once:
-  pinMode(D0,  OUTPUT);
-  pinMode(D1,  OUTPUT);
-  pinMode(D2,  OUTPUT);
-  attachInterrupt(D3, trafficLight, FALLING);
-
+int ledpin_red=D0;
+int ledpin_yellow=D1;
+int ledpin_green=D2;
+int inpButton =D3;
+int flag=0;
+int check=1;
+void setup()
+{
+  pinMode(ledpin_red,OUTPUT);
+  pinMode(ledpin_yellow,OUTPUT);
+  pinMode(ledpin_green,OUTPUT);
+  pinMode(inpButton, INPUT);
 }
 
 void loop()
 {
+  if(flag==0)
+  {
+    if (check==1)
+    {
+      digitalWrite(ledpin_red, HIGH);
+      flag=1;
+    }
+    else
+    {
+      digitalWrite(ledpin_red, LOW);
+    }
+    if(check==2)
+    {
+      flag=1;
+      digitalWrite(ledpin_yellow, HIGH);
+    } 
+    else
+  {
+    digitalWrite(ledpin_yellow, LOW);
+  }
+    if(check==3)
+  {
+    digitalWrite(ledpin_green, HIGH);
+    flag=1;
+    check=0;
+  }
+    else
+  {
+    digitalWrite(ledpin_green, LOW);
+  }
 
-}
-void trafficLight() {
-  if(changeColor == 1)
-  {
-    digitalWrite(D0, HIGH);
-    digitalWrite(D1, LOW);
-    digitalWrite(D2, LOW);
   }
-  else if(changeColor == 2)
+  if(digitalRead(inpButton) == LOW && flag==1)
   {
-    digitalWrite(D0, LOW);
-    digitalWrite(D1, HIGH);
-    digitalWrite(D2, LOW);
+    check=check+1;
+    flag=0;
   }
-  else if(changeColor == 3)
-  {
-    digitalWrite(D0, LOW);
-    digitalWrite(D1, LOW);
-    digitalWrite(D2, HIGH);
-  }
-  changeColor = (changeColor % 3) + 1;
 }
