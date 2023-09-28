@@ -1,0 +1,16 @@
+
+Servo myservo;
+
+void setup()
+{
+  myservo.attach(/*pin*/, 600, 2600);
+}
+
+void loop(){
+  int potVal = analogRead(A0);
+  int angleServo = map(potVal, 600, 2600, 0, 180);
+  myservo.write(angleServo);
+  delay(5000);
+  
+}
+//Servo
