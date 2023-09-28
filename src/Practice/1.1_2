@@ -15,7 +15,7 @@
 // }
 
 
-
+//1.2
 void setup() {
   pinMode(D0, OUTPUT);
   pinMode(D3, INPUT);
