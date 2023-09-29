@@ -1,32 +1,13 @@
-/*Силовой ключ и вентилятор (4-pin) подключены к пинам D0 и D1 управляются ШИМ на частоте 25КГц. 
-Скважность ШИМ регулируется поворотом потенциометра подключенного к пину A0.*/
-
-//analogWriteFreq(25000);
-//
-/*const int posw = 9; //вывод подключения силового ключа
-const int BUT_ON = 8; //вывод зелёной кнопки
-const int BUT_OFF = 7; //вывод красной кнопки
-const int POT = A0; //вывод потенциометра
- 
-boolean is_on = false; //переменная для хранения состояния (вкл или выкл)
- 
 void setup() {
-  pinMode(posw, OUTPUT); //вывод силового ключа на "выход"
+  analogWriteFreq(25000);
+  
 }
- 
-void loop() {
-  if (digitalRead(BUT_ON)) { //если нажали кнопку ВКЛ (зелёная)
-    is_on = true; //изменить состояние на вкл                                               //силовой ключ пример 
-  }
-  if (digitalRead(BUT_OFF)) { //если нажали кнопку ВЫКЛ (красная)
-    is_on = false; //изменить состояние на выкл
-  }
-  if (is_on) { //если состояние "включено"
-    int power = map(analogRead(A0), 0, 1023, 0, 255); //ограничить полученную скорость
-    analogWrite(posw, power); //запустить мотор со скоростью, установленной потенциометром
-  } else { //иначе
-    digitalWrite(posw, LOW); //выключить мотор
-  }
-}*/
 
-... 
+void loop() {
+  // put your main code here, to run repeatedly:
+  int potVal = analogRead(A0);
+  int myFan = map(potVal, 0, 4095, 0, 255);
+  int myKey = map(potVal, 0, 4095, 0, 255);
+  analogWrite(D1, myFan);
+  analogWrite(D0, myKey);
+}
