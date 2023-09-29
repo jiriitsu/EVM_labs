@@ -6,8 +6,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   int potVal = analogRead(A0);
-  int myFan = map(potVal, 0, 4095, 0, 255);
-  int myKey = map(potVal, 0, 4095, 0, 255);
-  analogWrite(D1, myFan);
-  analogWrite(D0, myKey);
+  int myVal = map(potVal, 0, 4095, 0, 255);
+  analogWrite(D1, myVal);
+  analogWrite(D0, myVal);
 }
