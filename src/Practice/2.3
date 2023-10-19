@@ -1,38 +1,27 @@
-//https://favtutor.com/blogs/split-string-cpp 
-//5th method
-
-
 #include <SPI.h>
-#include <AmperkaFET.h> 
+#include <AmperkaFET.h>
 #include <string>
 #include <string.h>
-#include <bits/stdc++.h> 
-FET mosfet(D0);
+#include <sstream>
 
+FET mosfet(D0, 2);
 void setup() {
-
-  Serial.begin();
-  mosfet.begin();
-  
-  
+Serial.begin();
+mosfet.begin();
 }
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(Serial.available())
-  {
-    String input = Serial.readString();
 
-    std::string str(input.c_str(), input.length());
+if (Serial.available()) {
+uint8_t device;
+uint8_t pin;
+bool mode;
+std::stringstream input;
 
-    Serial.println(str.c_str());
+input << Serial.readString().c_str();
+input >> device;
+input >> pin;
+input >> mode;
 
-    std::stringstream ss(str);
-
-//parse substrings
-//pishem na high, low....
-    
-
-
-    delay(5000);
-  }  
+mosfet.digitalWrite(device, pin, mode);
+}
 }
