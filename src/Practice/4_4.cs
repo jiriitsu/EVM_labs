@@ -11,8 +11,6 @@ var duration = TimeSpan.FromMinutes(1);
 var interval = TimeSpan.FromSeconds(10);
 if (DeviceHelper.GetGpioExpanderDevices() is [I2cConnectionSettings settings])
 {
-    using GpioExpander gpioExpander = new GpioExpander(settings);
-
     using Ina219 device = new Ina219(settings);
 
     device.BusVoltageRange = Ina219BusVoltageRange.Range16v;
@@ -21,7 +19,7 @@ if (DeviceHelper.GetGpioExpanderDevices() is [I2cConnectionSettings settings])
    
     while(true)
     {
-        Console.WriteLine($"Bus Voltage {device.ReadBusVoltage()} Power {device.ReadPower() * 1000}mW Current {device.ReadCurrent()}") ;
+        Console.WriteLine($"Bus Voltage {device.ReadBusVoltage()} Power {device.ReadPower() * 1000}mW Current {device.ReadCurrent()}mA") ;
     }
     
 }
