@@ -8,7 +8,8 @@ using Raven.Iot.Device.GpioExpander;
 using Raven.Iot.Device.Ina219;
 using UnitsNet;
 
-
+//Ina219Calibrator
+//Harackteristiki glyanut
 var duration = TimeSpan.FromMinutes(1);
 var interval = TimeSpan.FromSeconds(10);
 
